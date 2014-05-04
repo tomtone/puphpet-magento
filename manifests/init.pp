@@ -12,7 +12,11 @@ class magento (
   $service_name         = $magento::params::service_name,
   $ensure               = $magento::params::ensure,
 ) inherits magento::params {
-
+begin
+    resource.safeevaluate(self)
+  rescue Puppet::ParseError => internal_error
+    raise internal_error.original
+  end
   anchor {'magento::begin': }
   anchor {'magento::end': }
 

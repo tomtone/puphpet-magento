@@ -4,6 +4,10 @@
 # It sets variables according to platform
 #
 class magento::params {
+
+  # ensure
+  $ensure = 'present'
+
   case $::osfamily {
     'Debian': {
       $package_name = 'magento'
